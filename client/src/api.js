@@ -1,8 +1,9 @@
 import axios from 'axios'
 
+// axios instance connecting client to server
 const service = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5000/api',
-  withCredentials: true
+  withCredentials: true // 
 })
 
 const errHandler = err => {
@@ -62,6 +63,13 @@ export default {
   postCountries(data) {
     return service
       .post('/countries', data)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  deleteCountry(countryId) {
+    return service
+      .delete('/countries/' + countryId)
       .then(res => res.data)
       .catch(errHandler)
   },
