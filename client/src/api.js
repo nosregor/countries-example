@@ -3,7 +3,7 @@ import axios from 'axios'
 // axios instance connecting client to server
 const service = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5000/api',
-  withCredentials: true // 
+  withCredentials: true // sends cookies
 })
 
 const errHandler = err => {
@@ -60,6 +60,14 @@ export default {
       .catch(errHandler)
   },
 
+  // add route to return details of a country
+  getCountryDetail(id) {
+    return service
+      .get('/countries/' + id)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   postCountries(data) {
     return service
       .post('/countries', data)
@@ -69,7 +77,14 @@ export default {
 
   deleteCountry(countryId) {
     return service
-      .delete('/countries/' + countryId)
+      .delete(`/countries/${countryId}`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+  // add edit route
+  updateCountry(id, body) {
+    return service
+      .put('/countries/' + id, body)
       .then(res => res.data)
       .catch(errHandler)
   },
@@ -80,8 +95,6 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
-
-
 
   addPicture(file) {
     const formData = new FormData()

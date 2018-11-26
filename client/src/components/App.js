@@ -3,6 +3,7 @@ import { Route, Link, NavLink, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Countries from './pages/Countries';
 import AddCountry from './pages/AddCountry';
+import EditCountry from './pages/EditCountry';
 import Secret from './pages/Secret';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -40,6 +41,7 @@ class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/countries" component={Countries} />
           <Route path="/add-country" component={AddCountry} />
+          <Route path="/edit-country/:id" component={EditCountry} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/secret" component={Secret} />

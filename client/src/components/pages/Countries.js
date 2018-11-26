@@ -15,11 +15,16 @@ class Countries extends Component {
       .then((resp) => {
         console.log('Delete', resp)
         this.setState({
-          // this 
           countries: this.state.countries.filter(c => c._id !== idClicked)
         })
       })
       .catch(err => console.log("Error", err))
+  }
+
+  handleEdit(idClicked) {
+    // Redirects the user to '/edit-country/'+idClicked
+    console.log('COUNTRIES', idClicked);
+    this.props.history.push('/edit-country/' + idClicked)
   }
 
   render() {
@@ -34,8 +39,8 @@ class Countries extends Component {
             <th>Capital</th>
             <th>Area</th>
             <th>Description</th>
-            <th>ACTION1</th>
-            <th>ACTION2</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
           </thead>
           <tbody>
 
@@ -45,17 +50,13 @@ class Countries extends Component {
                 <td>{c.capitals}</td>
                 <td>{c.area}</td>
                 <td>{c.description}</td>
-                <td><button onClick={(e) => this.handleClickEdit(e)}>Edit</button></td>
+                <td><button onClick={(e) => this.handleEdit(c._id)}>Edit</button></td>
                 <td><button onClick={(e) => this.handleDelete(c._id)}>Delete</button></td>
               </tr>
             )}
 
           </tbody>
         </table>
-
-
-
-        {/* {this.state.countries.map(c => <li key={c._id}>{c.name}</li>)} */}
       </div>
     );
   }
