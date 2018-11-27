@@ -98,8 +98,11 @@ export default {
   addPicture(file) {
     const formData = new FormData()
     formData.append("picture", file)
+
+    console.log('DEBUG formData', formData.get("picture"));
+
     return service
-      .post('/endpoint/to/add/a/picture', formData, {
+      .post('/users/pictures', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -107,4 +110,11 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
+
+  getProfile() {
+    return service
+      .get('/profile')
+      .then(res => res.data)
+      .catch(errHandler)
+  }
 }
