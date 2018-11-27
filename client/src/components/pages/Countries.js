@@ -57,6 +57,8 @@ class Countries extends Component {
                 <td>{c._owner.username}</td>
                 <td>
                   {api.isLoggedIn() && <button onClick={() => this.handleEdit(c._id)}>Edit</button>}
+                </td>
+                <td>
                   {api.isLoggedIn() && <button onClick={() => this.handleDelete(c._id)}>Delete</button>}
                 </td>
               </tr>
