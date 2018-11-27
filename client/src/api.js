@@ -113,7 +113,14 @@ export default {
 
   getProfile() {
     return service
-      .get('/profile')
+      .get('/users/profile')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  editProfile(body) {
+    return service
+      .put('/users/profile', body)
       .then(res => res.data)
       .catch(errHandler)
   }
