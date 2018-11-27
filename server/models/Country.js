@@ -4,17 +4,21 @@ const countrySchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'The country name is required'],
-    minlength: 1
+    minlength: 1,
   },
   capitals: {
     type: [String],
-    default: []
+    default: [],
   },
   area: {
     type: Number,
   },
   description: {
     type: String,
+  },
+  _owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
   },
 });
 

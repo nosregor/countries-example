@@ -17,7 +17,6 @@ const errHandler = err => {
 
 export default {
   service: service,
-
   isLoggedIn() {
     return localStorage.getItem('user') != null
   },

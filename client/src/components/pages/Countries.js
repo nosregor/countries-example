@@ -28,6 +28,8 @@ class Countries extends Component {
   }
 
   render() {
+    console.log(api.isLoggedIn());
+
     return (
 
       <div className="Countries" >
@@ -39,19 +41,24 @@ class Countries extends Component {
             <th>Capital</th>
             <th>Area</th>
             <th>Description</th>
+            <th>Owner</th>
             <th>EDIT</th>
             <th>DELETE</th>
           </thead>
           <tbody>
 
             {this.state.countries.map(c =>
+
               <tr key={c._id}>
                 <td>{c.name}</td>
                 <td>{c.capitals}</td>
                 <td>{c.area}</td>
                 <td>{c.description}</td>
-                <td><button onClick={(e) => this.handleEdit(c._id)}>Edit</button></td>
-                <td><button onClick={(e) => this.handleDelete(c._id)}>Delete</button></td>
+                <td>{c._owner.username}</td>
+                <td>
+                  {api.isLoggedIn() && <button onClick={() => this.handleEdit(c._id)}>Edit</button>}
+                  {api.isLoggedIn() && <button onClick={() => this.handleDelete(c._id)}>Delete</button>}
+                </td>
               </tr>
             )}
 
